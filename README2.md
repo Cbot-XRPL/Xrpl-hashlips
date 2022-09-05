@@ -6,7 +6,8 @@
 
 `2. run npm build`
 ### build the images and json files
-  then config folder upload to image file
+  then config folder upload to image file in config.js
+  go into utlis/folderUpload and update your pc path to build folder
 
 `3. npm run file_upload`
 ## upload images to ipfs
@@ -20,6 +21,7 @@
 ### upload json to ipfs
   then configure mint file to contain json ipfs link
   then delete bulk json file
+   go into utlis/mint and update your pc path to build/json folder
 
 `6. run npm mint`
 ### mint all json files into nfts
