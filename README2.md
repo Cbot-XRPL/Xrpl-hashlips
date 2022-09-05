@@ -1,10 +1,13 @@
 # Cbot Read Me
 
 
-`1. bring in layers files`
-### configure layers and metadata
+`1. configure program`
+### configure layers, metadata, nft.storage, and xrpl in config.js
 
-`2. run npm build`
+`2. npm install`
+### bring in dependencies 
+
+`3. npm run build`
 ### build the images and json files
   ##### then config folder upload to image file in config.js
   ##### go into utlis/folderUpload and update your pc path to build folder
@@ -13,17 +16,17 @@
 ## upload images to ipfs
   ##### then update config file for ipfs image pin cid
 
-`4. npm run update_info `
+`5. npm run update_info `
 ### update metadata files to contain image ipfs links
   ##### then configure folder upload to json files
 
-`5. run file_upload`
+`6. npm run file_upload`
 ### upload json to ipfs
   ##### then configure mint file to contain json ipfs link
   ##### then delete bulk json file
   ##### go into utlis/mint and update your pc path to build/json folder
 
-`6. run npm mint`
+`7. run npm mint`
 ### mint all json files into nfts
   
   
