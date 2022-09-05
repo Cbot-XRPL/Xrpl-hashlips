@@ -23,7 +23,7 @@ const jsonUri = '';
 		Account: wallet.classicAddress,
 		URI: xrpl.convertStringToHex(`${jsonUri}${file}`),
 		Flags:8,
-		NFTokenTaxon: file.slice(6,7)
+		NFTokenTaxon: Number(file.slice(6,7))
 	}
 	// Submit signed blob --------------------------------------------------------
 	const tx = await client.submitAndWait(transactionBlob,{wallet})
