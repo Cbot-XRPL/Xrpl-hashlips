@@ -5,8 +5,10 @@ const { NFTSeed} = require(`${basePath}/src/config.js`);
 const { filesFromPath, getFilesFromPath } = require('files-from-path') 
 
 // create needed var --------------------------------------------------------
+//your path to your json files
 const fullPath = `C:\\Users\\Cbot\\OneDrive\\Desktop\\Code\\project's\\cbot_art_engine\\build\\json`;
 const path = fullPath.slice(2);
+//input you pinned ipfs base uri
 const jsonUri = '';
 
 // mint nft func ---------------------------------------------------------------
