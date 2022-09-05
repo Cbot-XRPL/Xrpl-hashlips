@@ -1,5 +1,7 @@
 # Welcome to HashLips 👄
 
+# for xrpl minting also see README2.md
+
 ![](https://github.com/HashLips/hashlips_art_engine/blob/main/logo.png)
 
 All the code in these repos was created and explained by HashLips on the main YouTube channel.
