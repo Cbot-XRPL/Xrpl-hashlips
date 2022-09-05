@@ -14,14 +14,15 @@ const baseUri = "ipfs://your-images-ipfs-hash/images";
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 100,
+    growEditionSizeTo: 5,
     layersOrder: [
       { name: "Background" },
-      { name: "Item" },
-      { name: "Outfit" },
-      { name: "Body" },
-      { name: "Beard" },
-      { name: "Hat" }
+      { name: "Eyeball" },
+      { name: "Eye color" },
+      { name: "Iris" },
+      { name: "Shine" },
+      { name: "Bottom lid" },
+      { name: "Top lid" },
     ],
   },
 ];
