@@ -5,7 +5,7 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 const network = NETWORK.xrpl;
 
 // General metadata
-const namePrefix = "xWizard";
+const namePrefix = "token-name";
 const description = "Remember to replace this description";
 const baseUri = "ipfs://your-images-ipfs-hash/images";
 
