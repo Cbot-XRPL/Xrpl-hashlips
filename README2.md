@@ -2,13 +2,13 @@
 
 
 `1. configure program`
-### configure layers, metadata, nft.storage, and xrpl in config.js
+### -configure layers, metadata, nft.storage, and xrpl in config.js
 
 `2. npm install`
-### bring in dependencies 
+### -bring in dependencies 
 
 `3. npm run build`
-### build the images and json files
+### -build the images and json files
   ##### then config folder upload to image file in config.js
   ##### go into utlis/folderUpload and update your pc path to build folder
 
@@ -17,17 +17,17 @@
   ##### then update config file for ipfs image pin cid
 
 `5. npm run update_info `
-### update metadata files to contain image ipfs links
+### -update metadata files to contain image ipfs links
   ##### then configure folder upload to json files
 
 `6. npm run file_upload`
-### upload json to ipfs
+### -upload json to ipfs
   ##### then configure mint file to contain json ipfs link
   ##### then delete bulk json file
   ##### go into utlis/mint and update your pc path to build/json folder
 
 `7. run npm mint`
-### mint all json files into nfts
+### -mint all json files into nfts
   
   
 
