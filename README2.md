@@ -13,7 +13,7 @@
   ##### go into utlis/folderUpload and update your pc path to build folder
 
 `3. npm run file_upload`
-## upload images to ipfs
+### upload images to ipfs
   ##### then update config file for ipfs image pin cid
 
 `5. npm run update_info `
