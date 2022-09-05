@@ -2,26 +2,14 @@ const basePath = process.cwd();
 const { MODE } = require(`${basePath}/constants/blend_mode.js`);
 const { NETWORK } = require(`${basePath}/constants/network.js`);
 
-const network = NETWORK.eth;
+const network = NETWORK.xrpl;
 
 // General metadata
 const namePrefix = "xWizard";
 const description = "Remember to replace this description";
-const baseUri = "ipfs://bafybeicbfsd43crg2t7j3osrxl6dndjp4kwtvhz5gh376lmxcqjvhu643a/images";
+const baseUri = "ipfs://your-images-ipfs-hash/images";
 
 
-
-const solanaMetadata = {
-  symbol: "YC",
-  seller_fee_basis_points: 1000, // Define how much % you want from secondary market sales 1000 = 10%
-  external_url: "https://www.youtube.com/c/hashlipsnft",
-  creators: [
-    {
-      address: "7fXNuer5sbZtaTEPhtJ5g5gNtuyRoKkvxdjEjEnPN4mC",
-      share: 100,
-    },
-  ],
-};
 
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
@@ -38,12 +26,12 @@ const layerConfigurations = [
   },
 ];
 
-// ipfs settings
+//nft.storage and ipfs settings
 const folderUpload = "images"
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEEzYTMxMjcwM0Y4RjA5NEZGRTI0NDkzN0M0MDJEOEFjNGYyMThDY0QiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTY1MzkzMDM5Njc5NSwibmFtZSI6Inh3aXphcmQgbWludCJ9.1-BuJcwClH5_C2V18o9SRBrGJ1SozZl934xvL6MpZ38'
+const token = 'your nft.storage api token'
 
 // mint settings
-const NFTSeed = 'snhLMR1f8BjCJ5XT5TuFj6xWch2JG'
+const NFTSeed = 'your xrpl seed'
 
 
 
