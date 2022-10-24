@@ -19,11 +19,12 @@
 `5. npm run update_info `
 ### -update metadata files to contain image ipfs links
   ##### then configure folder upload to json files
+  ##### then delete bulk json file
 
 `6. npm run folder_upload`
 ### -upload json to ipfs
   ##### then configure mint file to contain json ipfs link
-  ##### then delete bulk json file
+ 
   ##### go into utlis/mint and update your pc path to build/json folder
 
 `7. run npm mint`
