@@ -12,7 +12,7 @@
   ##### then config folder upload to image file in config.js
   ##### go into utlis/folderUpload and update your pc path to build folder
 
-`3. npm run file_upload`
+`4. npm run folder_upload`
 ### upload images to ipfs
   ##### then update config file for ipfs image pin cid
 
