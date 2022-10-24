@@ -27,7 +27,7 @@
  
   ##### go into utlis/mint and update your pc path to build/json folder
 
-`7. run npm mint`
+`7. npm run mint`
 ### -mint all json files into nfts
   
   
