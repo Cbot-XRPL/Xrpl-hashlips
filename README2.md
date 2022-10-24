@@ -20,7 +20,7 @@
 ### -update metadata files to contain image ipfs links
   ##### then configure folder upload to json files
 
-`6. npm run file_upload`
+`6. npm run folder_upload`
 ### -upload json to ipfs
   ##### then configure mint file to contain json ipfs link
   ##### then delete bulk json file
