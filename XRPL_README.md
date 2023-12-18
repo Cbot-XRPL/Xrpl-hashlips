@@ -1,7 +1,7 @@
 # Cbot Read Me
 
 
-`1. configure program`
+### 1. configure program
 ### -configure layers, metadata, nft.storage, and xrpl in config.js
 
 `2. npm install`
