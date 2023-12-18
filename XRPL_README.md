@@ -2,23 +2,25 @@
 
 
 ### 1. configure program
--configure layers, metadata, nft.storage, and xrpl in config.js
+configure layers, metadata, nft.storage, and xrpl in config.js
 
 
 ### 2.bring in dependencies 
 use command in terminal `npm install`
 
-`3. npm run build`
-### -build the images and json files
-  then set folder upload to image file in config.js
-  go into utlis/folderUpload and update your pc path to build folder
 
-`4. npm run folder_upload`
-### upload images to ipfs
-  then update config file for ipfs image pin cid
+### 3.build the images and json files
+use command in terminal `npm run build`
+then set folder upload to image file in config.js
+go into utlis/folderUpload and update your pc path to build folder
+
+
+### 4.upload images to ipfs
+use command in terminal `npm run folder_upload`
+then update config file for ipfs image pin cid
 
 `5. npm run update_info `
-### -update metadata files to contain image ipfs links
+### 5.update metadata files to contain image ipfs links
    then configure folder upload to json files
    then delete bulk json file
 
