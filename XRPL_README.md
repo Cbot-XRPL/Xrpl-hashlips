@@ -9,7 +9,7 @@
 
 `3. npm run build`
 ### -build the images and json files
-  then config folder upload to image file in config.js
+  then set folder upload to image file in config.js
   go into utlis/folderUpload and update your pc path to build folder
 
 `4. npm run folder_upload`
