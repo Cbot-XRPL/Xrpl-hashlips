@@ -1,11 +1,12 @@
-# Cbot Read Me
+# XRPL MINT Read Me
 
 
 ### 1. configure program
-### -configure layers, metadata, nft.storage, and xrpl in config.js
+-configure layers, metadata, nft.storage, and xrpl in config.js
 
-`2. npm install`
-### -bring in dependencies 
+
+### 2.bring in dependencies 
+use command in terminal `npm install`
 
 `3. npm run build`
 ### -build the images and json files
