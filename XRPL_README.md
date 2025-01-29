@@ -1,5 +1,9 @@
 # XRPL MINT Read Me
 
+## Tools
+
+- https://docs.pinata.cloud/web3/pinning/pinning-files#json
+
 
 ### 1. configure program
 - configure layers, metadata, nft.storage, and xrpl in config.js
