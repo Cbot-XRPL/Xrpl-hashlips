@@ -1,5 +1,5 @@
 # Xahau Read Me
-This is a variant of the Hashlips art engine for Xahau hooks. This is a work in progress atm!! This runs off a older verison dependencys you may need to dowgrade node or python. 
+This is a variant of the Hashlips Art Engine thats been supercharged to pin files to ipfs via Pinita and invoke URI into Xahau hooks. This is a work in progress atm!! This runs off a older verison dependencys you may need to dowgrade node or python. 
 
 
 ## Tools
