@@ -1,5 +1,5 @@
 # Xahau Read Me
-This is a variant of the Hashlips art engine for Xahau hooks. This is a work in progress atm!!
+This is a variant of the Hashlips art engine for Xahau hooks. This is a work in progress atm!! This runs off a older verison dependencys you may need to dowgrade node or python. 
 
 
 ## Tools
@@ -8,9 +8,12 @@ This is a variant of the Hashlips art engine for Xahau hooks. This is a work in 
 
 
 ## Set Up
-- Configure the you layers and meta data setting accr
 
+You will need to set your eviromental varible in a standard .env file. You will need a JWT token from Pinita and a Gateway address from Pinita. you will also need the Seed (secert) for your account with the hook install on it. Go read the [HASHLIPS_README.MD](\HASHLIPS_README.md) to learn how hashlips works. Once you have learned about hashlips configure your image layers and metadata in config.js.
 
+PINATA_JWT=QRFH#YOURTOKEN#$BRKJF
+GATEWAY_URL=your-gate-way-264.mypinata.cloud
+HOOK_SEED=VARRYOURSEEDOBVH
 
 ### 1. configure program
 - configure layers, metadata, nft.storage, and xrpl in config.js
