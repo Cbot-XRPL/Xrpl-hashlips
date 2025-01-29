@@ -1,0 +1,53 @@
+{
+  "schema": "https://nftmaster.com/nftmaster.v0Schema",
+  "name": "token-name #3",
+  "description": "Remember to replace this description",
+  "image": "ipfs://your-images-ipfs-hash/images/3.png",
+  "video": null,
+  "animation": null,
+  "audio": null,
+  "file": null,
+  "external_link": "https://cbotlabs.xyz",
+  "collection": {
+    "name": "xWizard",
+    "family": null
+  },
+  "edition": 3,
+  "attributes": [
+    {
+      "name": "Background",
+      "value": "Black",
+      "description": null
+    },
+    {
+      "name": "Eyeball",
+      "value": "Red",
+      "description": null
+    },
+    {
+      "name": "Eye color",
+      "value": "Yellow",
+      "description": null
+    },
+    {
+      "name": "Iris",
+      "value": "Medium",
+      "description": null
+    },
+    {
+      "name": "Shine",
+      "value": "Shapes",
+      "description": null
+    },
+    {
+      "name": "Bottom lid",
+      "value": "Low",
+      "description": null
+    },
+    {
+      "name": "Top lid",
+      "value": "High",
+      "description": null
+    }
+  ]
+}

@@ -20,16 +20,19 @@
     "update_info": "node utils/update_info.js",
     "preview_gif": "node utils/preview_gif.js",
     "generate_metadata": "node utils/generate_metadata.js",
-    "folder_upload": "node utils/folderUpload.js",
+    "folder_upload": "node utils/folderUpload2.js",
     "mint": "node utils/mint.js"
   },
-  "author": "Daniel Eugene Botha (HashLips)",
+  "OGauthor": "Daniel Eugene Botha (HashLips)",
+  "author": "Cody (Cbot Labs)",
   "license": "MIT",
   "dependencies": {
     "canvas": "^2.8.0",
+    "dotenv": "^16.4.7",
     "files-from-path": "^0.2.6",
     "gif-encoder-2": "^1.0.5",
     "nft.storage": "^7.0.0",
+    "pinata-web3": "^0.5.4",
     "sha1": "^1.1.1",
     "xrpl": "^2.5.0-beta.0"
   }
