@@ -1,5 +1,5 @@
 # Xahau Read Me
-This is a variant of the Hashlips art engine for Xahau hooks.
+This is a variant of the Hashlips art engine for Xahau hooks. This is a work in progress atm!!
 
 
 ## Tools
