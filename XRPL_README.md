@@ -1,8 +1,15 @@
-# XRPL MINT Read Me
+# Xahau Read Me
+This is a variant of the Hashlips art engine for Xahau hooks.
+
 
 ## Tools
 
 - https://docs.pinata.cloud/web3/pinning/pinning-files#json
+
+
+## Set Up
+- Configure the you layers and meta data setting accr
+
 
 
 ### 1. configure program

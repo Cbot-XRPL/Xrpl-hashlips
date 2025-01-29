@@ -1,36 +1,43 @@
-const basePath = process.cwd();
-const { PinataSDK } = require("pinata-web3")
-const { filesFromPath, getFilesFromPath } = require('files-from-path') 
-const {folderUpload} = require(`${basePath}/src/config.js`);
-require("dotenv").config()
+const fs = require("fs");
+const path = require("path");
+const { PinataSDK } = require("pinata-web3");
+const { getFilesFromPath } = require("files-from-path");
+const { File } = require("buffer");  // Import File from buffer module
+require("dotenv").config();
 
-
-
-//set up pinta api keys
+// Initialize Pinata
 const pinata = new PinataSDK({
   pinataJwt: process.env.PINATA_JWT,
   pinataGateway: process.env.GATEWAY_URL
-})
+});
 
-async function upload(){
+async function upload() {
   try {
+    // Ensure correct directory path
+    const dirPath = path.join(__dirname, "../build/json");
 
-    //path to files to pin
-     const fullPath = `C:\\Users\\codyr\\OneDrive\\Desktop\\Code\\xrpl_hashlips_5\\build\\${folderUpload}`;
-     const path = fullPath.slice(2);
+    // Get files from path
+    const files = await getFilesFromPath(dirPath);
 
-    //assign files to var
-     const files = await getFilesFromPath(path);
-     console.log(files);
-  
-  //upload files
-    const upload = await pinata.upload.fileArray(files)
-    console.log(upload)
+    // Convert file streams to File objects
+    const fileArray = await Promise.all(
+      files.map(async (file) => {
+        const filePath = path.join(dirPath, path.basename(file.name)); // Ensure correct path
+        const buffer = await fs.promises.readFile(filePath);
+        const fileObj = new File([buffer], path.basename(file.name), { type: "application/json" }); // Convert buffer to File
+        return fileObj;
+      })
+    );
 
-    //handle error
+    console.log("Uploading files:", fileArray);
+
+    // Upload to Pinata
+    const upload = await pinata.upload.fileArray(fileArray);
+    console.log("Upload successful:", upload);
+    
   } catch (error) {
-    console.log(error)
+    console.error("Upload failed:", error);
   }
 }
 
-upload()
+upload();
