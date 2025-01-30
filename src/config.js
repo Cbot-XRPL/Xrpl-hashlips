@@ -31,8 +31,7 @@ const layerConfigurations = [
 const folderUpload = "images"
 const token = 'your nft.storage api token'
 
-// mint settings
-const NFTSeed = 'your xrpl seed'
+
 
 
 
@@ -106,7 +105,6 @@ module.exports = {
   background,
   folderUpload,
   token,
-  NFTSeed,
   uniqueDnaTorrance,
   layerConfigurations,
   rarityDelimiter,

@@ -27,6 +27,7 @@
   "author": "Cody (Cbot Labs)",
   "license": "MIT",
   "dependencies": {
+    "@transia/xrpl": "^2.7.3-alpha.28",
     "canvas": "^2.8.0",
     "dotenv": "^16.4.7",
     "files-from-path": "^0.2.6",

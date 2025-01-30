@@ -1,24 +1,30 @@
 // file imports ------------------------------------------------------------
-const xrpl = require('xrpl');
+const xrpl = require("@transia/xrpl");
 const basePath = process.cwd();
-const { NFTSeed} = require(`${basePath}/src/config.js`);
 const { getFilesFromPath } = require("files-from-path");
 const { File } = require("buffer");  // Import File from buffer module
 require("dotenv").config();
 
-// create needed var --------------------------------------------------------
-//your path to your json files
-const fullPath = `C:\\Users\\Cbot\\OneDrive\\Desktop\\Code\\project's\\cbot_art_engine\\build\\json`;
-const path = fullPath.slice(2);
+
+
+// Ensure correct directory path
+const dirPath = path.join(__dirname, "../build/json");
+
+// Get files from path
+const files = await getFilesFromPath(dirPath);
+
 //input you pinned ipfs base uri
 const jsonUri = '';
 
+//set up wall
+const wallet = xrpl.Wallet.fromSeed(process.env.HOOK_SEED)
+
 // mint nft func ---------------------------------------------------------------
-  async function mintToken(NFTSeed,jsonUri,file) {
-	const wallet = xrpl.Wallet.fromSeed(NFTSeed)
-	const client = new xrpl.Client("wss://xls20-sandbox.rippletest.net:51233")
-	await client.connect()
-	console.log("Connected to Sandbox")
+  async function mintToken(jsonUri,file) {
+	
+const client = new xrpl.Client("wss://xahau.network/")
+await client.connect()
+console.log("Connected to Xahau")
 
 	const transactionBlob = {
 		TransactionType: "NFTokenMint",
