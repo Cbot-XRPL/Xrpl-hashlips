@@ -25,35 +25,58 @@ const { XrplAccountLib } = require('xrpl');
 
 //main func
 async function main() {
+
+  //defibe some speical timeing func
   function esperar(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+  //set listing pirce
   const price=xah*1000000;
+
+  //set network
   let network="wss://xahau-test.net";
   let NetworkID=21338;
   if(net==="Mainnet"){
     network="wss://xahau.network";
     NetworkID=21337;
   }
+
+  //define file prefix
   const carpeta = "/json_files";
+
+  //configure minter account for searching
   const account = derive.familySeed(seed, {algorithm: "secp256k1"});
+
+  //connect to network
   const client = new xrpl.Client(network);
   await client.connect();
+
+  //confifure minter wallet for use?
   const my_wallet = xrpl.Wallet.fromSeed(seed);
+
+  //check speical utils for network info
   const networkInfo = await utils.txNetworkAndAccountValues(network, account);
+
+  // log your addres
   console.log(`Your public address is: ${my_wallet.address}`);
+
+//check your account info
   const response = await client.request({
     command: "account_info",
     account: my_wallet.address,
     ledger_index: "validated",
   });
+
+//log info about xah amounts
   const total_balance = (response.result.account_data.Balance)/1000000;
   const reserves = (response.result.account_data.OwnerCount*0.2)+1;
   console.log(`Your total balance (available+reserves) is: ${total_balance} XAH`);
   console.log(`Your reserves is: ${reserves} XAH`);
   const balance = total_balance-reserves;
   console.log(`Your available balance is: ${balance} XAH`);
-  //The reserve per object is 0.2 but I prefer be safe
+
+
+       //NEED TO ADD FIX FOR JSON NUMBERS-------------------------------------------------------------------------------------------------------
   const TicketTotalCost = numberURIs * 0.3;
   console.log(
     `To create the tickets needed, you need to have at least this balance: ${TicketTotalCost} XAH`
@@ -140,6 +163,7 @@ async function main() {
       console.log(`Tickets created ${response2.result.account_objects.length}`);
 
       //Checking if every file is in the folder /json_files:
+      //NEED TO ADD FIX FOR JSON NUMBERS-------------------------------------------------------------------------------------------------------
       let count_files = 0;
       for (let i = 0; i < numberURIs; i++) {
         const filePath = `./json_files/${i + 1}.json`;
@@ -154,7 +178,7 @@ async function main() {
       if (count_files != numberURIs) {
         console.log(`There are ${numberURIs - count_files} .json files that DONT exists. Please insert them to /json_files folder.`);
       } else {
-
+      //NEED TO ADD FIX REMOVE DIGET-------------------------------------------------------------------------------------------------------
         let digests = [];
         for (let i = 0; i < numberURIs; i++) {
           const jsonData = require(`./json_files/${i + 1}.json`);
@@ -170,6 +194,7 @@ async function main() {
       console.log(`Digests generated!`);
       console.log(`Let's mint!`);
 
+      //MODIFY TO INVOKE-------------------------------------------------------------------------------------------------------
       for (let i=0; i < numberURIs; i++) {
         y=i+1;
       const prepared = ({
