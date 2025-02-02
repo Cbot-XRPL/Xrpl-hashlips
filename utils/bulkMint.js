@@ -11,15 +11,11 @@ require("dotenv").config();
 const numberURIs = 5;
 //Select your network "Testnet" or "Mainnet"
 const net = "Testnet";
-//Secret of your wallet (Don't share it!) Testnet address generator: https://xahau-test.net/ Fake example: "sn5XTrWNGNysp4o1JYEFp7wSbN6Gz"
-const seed = "";
 //Price of every NFT in XAH. Example: for 1 XAH price per NFT, put 1
 const xah = 10;
 //CID from tour ipfs files without 'ipfs://' part. Fake example: 'bafybeigyy2u2sbgtxxr2tdc6snxgefdo52bx2qy2nd3vjrjzaieg4yr3ce'
-const ipfs_cid='';
+const ipfs_cid = '';
 //Burnable flag, 0 -> you can't burn other owners URITokens, 1 -> you can burn other owners URITokens
-const burnable=0;
-//End modify variables
 
 
 
@@ -31,14 +27,14 @@ async function main() {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
   //set listing pirce
-  const price=xah*1000000;
+  const price = xah * 1000000;
 
   //set network
-  let network="wss://xahau-test.net";
-  let NetworkID=21338;
-  if(net==="Mainnet"){
-    network="wss://xahau.network";
-    NetworkID=21337;
+  let network = "wss://xahau-test.net";
+  let NetworkID = 21338;
+  if (net === "Mainnet") {
+    network = "wss://xahau.network";
+    NetworkID = 21337;
   }
 
   //connect to network
@@ -48,32 +44,32 @@ async function main() {
   //check speical utils for network info
   const networkInfo = await utils.txNetworkAndAccountValues(network, account);
 
-   //configure minter account for searching
-   const account = derive.familySeed(seed, {algorithm: "secp256k1"});
+  //configure hook account for searching
+  const account = derive.familySeed(process.env.HOOK_SEED, { algorithm: "secp256k1" });
 
-  //confifure minter wallet for use?
-  const my_wallet = xrpl.Wallet.fromSeed(seed);
+  //confifure hook wallet for invokes
+  const my_wallet = xrpl.Wallet.fromSeed(process.env.HOOK_SEED);
 
-  // log your addres
+  // log your hook address
   console.log(`Your public address is: ${my_wallet.address}`);
 
   //define file prefix
   const carpeta = "/json_files";
 
 
-//check your account info
+  //check your account info
   const response = await client.request({
     command: "account_info",
     account: my_wallet.address,
     ledger_index: "validated",
   });
 
-//log info about xah amounts
-  const total_balance = (response.result.account_data.Balance)/1000000;
-  const reserves = (response.result.account_data.OwnerCount*0.2)+1;
+  //log info about xah amounts
+  const total_balance = (response.result.account_data.Balance) / 1000000;
+  const reserves = (response.result.account_data.OwnerCount * 0.2) + 1;
   console.log(`Your total balance (available+reserves) is: ${total_balance} XAH`);
   console.log(`Your reserves is: ${reserves} XAH`);
-  const balance = total_balance-reserves;
+  const balance = total_balance - reserves;
   console.log(`Your available balance is: ${balance} XAH`);
 
 
@@ -169,35 +165,35 @@ async function main() {
       for (let i = 0; i < numberURIs; i++) {
 
 
-//define normal file path
-const filePath = `./json_files/00000.json`;
+        //define normal file path
+        const filePath = `./json_files/00000.json`;
 
-//set proper for 1-10
-if(i<10){
-  filePath = `./json_files/0000${i + 1}.json`;
-}
+        //set proper for 1-10
+        if (i < 10) {
+          filePath = `./json_files/0000${i + 1}.json`;
+        }
 
-//set proper for 10-99
-if(i>=10 && i<100){
-  filePath = `./json_files/000${i + 1}.json`;
-}
+        //set proper for 10-99
+        if (i >= 10 && i < 100) {
+          filePath = `./json_files/000${i + 1}.json`;
+        }
 
-//set proper for 100-999
-if(i>=100 && i<1000){
-  filePath = `./json_files/00${i + 1}.json`;
-}
+        //set proper for 100-999
+        if (i >= 100 && i < 1000) {
+          filePath = `./json_files/00${i + 1}.json`;
+        }
 
-//set proper for 100-999
-if(i>=1000 && i<10000){
-  filePath = `./json_files/0${i + 1}.json`;
-}
+        //set proper for 100-999
+        if (i >= 1000 && i < 10000) {
+          filePath = `./json_files/0${i + 1}.json`;
+        }
 
-//set proper for 100-999
-if(i>=10000 && i<99999){
-  filePath = `./json_files/${i + 1}.json`;
-}
-      
-//ensure all files are in place
+        //set proper for 100-999
+        if (i >= 10000 && i < 99999) {
+          filePath = `./json_files/${i + 1}.json`;
+        }
+
+        //ensure all files are in place
         if (fs.existsSync(filePath)) {
           console.log(`File ${filePath} exists.`);
           count_files = count_files + 1;
@@ -210,28 +206,28 @@ if(i>=10000 && i<99999){
       } else {
 
 
-      //Iterate through json files and invoke them-------------------------------------------------------------------------------------------------------
-      for (let i=0; i < numberURIs; i++) {
+        //Iterate through json files and invoke them-------------------------------------------------------------------------------------------------------
+        for (let i = 0; i < numberURIs; i++) {
 
-        y=i+1;
-
-      const prepared = ({
-        "TransactionType": "URITokenMint",
-        "Account":my_wallet.address,
-        "URI": xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${y}.json`),
-        "Sequence":0,
-        "TicketSequence": tickets[i],
-        "Fee":"100",
-        "NetworkID":NetworkID,
-      });
-      const tx =  await signAndSubmit(prepared,network,account);
-      console.log('TX submitted: ',y,tx);
-      console.log(JSON.stringify(tx));
+          y = i + 1;
+          //prepare the invoke
+          const prepared = ({
+            "TransactionType": "URITokenMint",
+            "Account": my_wallet.address,
+            "URI": xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${y}.json`),
+            "Sequence": 0,
+            "TicketSequence": tickets[i],
+            "Fee": "100",
+            "NetworkID": NetworkID,
+          });
+          const tx = await signAndSubmit(prepared, network, account);
+          console.log('TX submitted: ', y, tx);
+          console.log(JSON.stringify(tx));
+        }
+        console.log('invoke finished. Enjoy!');
+        console.log('Feel free to donate to: rCboTXmnomVJzRKVXqDMDFzwTaCKFAcYs or follow me @cbot_xrpl');
       }
-      console.log('Mint finished. Enjoy!');
-      console.log('Feel free to donate to: rf1NrYAsv92UPDd8nyCG4A3bez7dhYE61r or follow me @ekiserrepe');
     }
-}
 
     await client.disconnect();
     console.log(`Connection closed`);
