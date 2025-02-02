@@ -1,6 +1,13 @@
+const fs = require("fs");
+const path = require("path");
+const xrpl = require("xrpl");
+const { derive, utils, signAndSubmit } = require("xrpl-accountlib");
+const crypto = require("crypto");
+require("dotenv").config();
+
 //Modify these fields before running your code
 
-//Number of URITokens (NFTs) you want to mint
+//Number of URITokens (NFTs) you want to Invoke
 const numberURIs = 5;
 //Select your network "Testnet" or "Mainnet"
 const net = "Testnet";
@@ -14,13 +21,6 @@ const ipfs_cid='';
 const burnable=0;
 //End modify variables
 
-//Don't touch anything after this line
-const fs = require("fs");
-const path = require("path");
-const xrpl = require("xrpl");
-const { derive, utils, signAndSubmit } = require("xrpl-accountlib");
-const crypto = require("crypto");
-const { XrplAccountLib } = require('xrpl');
 
 
 //main func
@@ -41,24 +41,25 @@ async function main() {
     NetworkID=21337;
   }
 
-  //define file prefix
-  const carpeta = "/json_files";
-
-  //configure minter account for searching
-  const account = derive.familySeed(seed, {algorithm: "secp256k1"});
-
   //connect to network
   const client = new xrpl.Client(network);
   await client.connect();
 
-  //confifure minter wallet for use?
-  const my_wallet = xrpl.Wallet.fromSeed(seed);
-
   //check speical utils for network info
   const networkInfo = await utils.txNetworkAndAccountValues(network, account);
 
+   //configure minter account for searching
+   const account = derive.familySeed(seed, {algorithm: "secp256k1"});
+
+  //confifure minter wallet for use?
+  const my_wallet = xrpl.Wallet.fromSeed(seed);
+
   // log your addres
   console.log(`Your public address is: ${my_wallet.address}`);
+
+  //define file prefix
+  const carpeta = "/json_files";
+
 
 //check your account info
   const response = await client.request({
@@ -76,7 +77,7 @@ async function main() {
   console.log(`Your available balance is: ${balance} XAH`);
 
 
-       //NEED TO ADD FIX FOR JSON NUMBERS-------------------------------------------------------------------------------------------------------
+  //NEED TO ADD FIX FOR JSON NUMBERS-------------------------------------------------------------------------------------------------------
   const TicketTotalCost = numberURIs * 0.3;
   console.log(
     `To create the tickets needed, you need to have at least this balance: ${TicketTotalCost} XAH`
@@ -88,6 +89,7 @@ async function main() {
     client.disconnect();
     console.log(`Connection closed`);
   } else {
+
     //We check how many tickets you had before running the code
     let response = await client.request({
       command: "account_objects",
@@ -134,8 +136,7 @@ async function main() {
       console.log(
         `New tickets are not created. You have enough created already.`
       );
-    }
-
+    };
     const response2 = await client.request({
       command: "account_objects",
       account: my_wallet.address,
@@ -166,8 +167,37 @@ async function main() {
       //NEED TO ADD FIX FOR JSON NUMBERS-------------------------------------------------------------------------------------------------------
       let count_files = 0;
       for (let i = 0; i < numberURIs; i++) {
-        const filePath = `./json_files/${i + 1}.json`;
 
+
+//define normal file path
+const filePath = `./json_files/00000.json`;
+
+//set proper for 1-10
+if(i<10){
+  filePath = `./json_files/0000${i + 1}.json`;
+}
+
+//set proper for 10-99
+if(i>=10 && i<100){
+  filePath = `./json_files/000${i + 1}.json`;
+}
+
+//set proper for 100-999
+if(i>=100 && i<1000){
+  filePath = `./json_files/00${i + 1}.json`;
+}
+
+//set proper for 100-999
+if(i>=1000 && i<10000){
+  filePath = `./json_files/0${i + 1}.json`;
+}
+
+//set proper for 100-999
+if(i>=10000 && i<99999){
+  filePath = `./json_files/${i + 1}.json`;
+}
+      
+//ensure all files are in place
         if (fs.existsSync(filePath)) {
           console.log(`File ${filePath} exists.`);
           count_files = count_files + 1;
@@ -178,34 +208,19 @@ async function main() {
       if (count_files != numberURIs) {
         console.log(`There are ${numberURIs - count_files} .json files that DONT exists. Please insert them to /json_files folder.`);
       } else {
-      //NEED TO ADD FIX REMOVE DIGET-------------------------------------------------------------------------------------------------------
-        let digests = [];
-        for (let i = 0; i < numberURIs; i++) {
-          const jsonData = require(`./json_files/${i + 1}.json`);
-          const jsonDataString = JSON.stringify(jsonData);
-          digests[i] = crypto
-            .createHash("sha512")
-            .update(jsonDataString)
-            .digest("hex")
-            .slice(0, 64);
-          console.log("Digest generated nº", i+1, digests[i]);
-          
-      }
-      console.log(`Digests generated!`);
-      console.log(`Let's mint!`);
 
-      //MODIFY TO INVOKE-------------------------------------------------------------------------------------------------------
+
+      //Iterate through json files and invoke them-------------------------------------------------------------------------------------------------------
       for (let i=0; i < numberURIs; i++) {
+
         y=i+1;
+
       const prepared = ({
         "TransactionType": "URITokenMint",
         "Account":my_wallet.address,
         "URI": xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${y}.json`),
-        "Digest": digests[i],
-        "Flags":burnable,
         "Sequence":0,
         "TicketSequence": tickets[i],
-        "Amount":`${price}`,
         "Fee":"100",
         "NetworkID":NetworkID,
       });
