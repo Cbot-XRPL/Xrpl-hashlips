@@ -4,6 +4,7 @@ const xrpl = require("xrpl");
 const { derive, utils, signAndSubmit } = require("xrpl-accountlib");
 const crypto = require("crypto");
 require("dotenv").config();
+const basePath = process.cwd();
 
 //Modify these fields before running your code
 
@@ -166,26 +167,26 @@ async function main() {
 
 
         //define normal file path
-        const filePath = `./json_files/00000.json`;
+        const filePath = `${basePath}/build/json/00000.json`;
 
         //set proper for 1-10
         if (i < 10) {
-          filePath = `./json_files/0000${i + 1}.json`;
+          filePath = `${basePath}/build/json/0000${i + 1}.json`;
         }
 
         //set proper for 10-99
         if (i >= 10 && i < 100) {
-          filePath = `./json_files/000${i + 1}.json`;
+          filePath = `${basePath}/build/json/000${i + 1}.json`;
         }
 
         //set proper for 100-999
         if (i >= 100 && i < 1000) {
-          filePath = `./json_files/00${i + 1}.json`;
+          filePath = `${basePath}/build/json/00${i + 1}.json`;
         }
 
         //set proper for 100-999
         if (i >= 1000 && i < 10000) {
-          filePath = `./json_files/0${i + 1}.json`;
+          filePath = `${basePath}/build/json/0${i + 1}.json`;
         }
 
         //set proper for 100-999
@@ -201,6 +202,8 @@ async function main() {
           console.log(`File ${filePath} DOESN'T exists.`);
         }
       }
+
+
       if (count_files != numberURIs) {
         console.log(`There are ${numberURIs - count_files} .json files that DONT exists. Please insert them to /json_files folder.`);
       } else {
@@ -241,21 +244,30 @@ if (i >= 10000 && i < 99999) {
 }
 
 
-
-
-
           
+ let URI = xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${uriPath}`);
+ console.log(URI)
+
+ 
+        
           // Prepare the Invoke transaction
           const prepared = await client.autofill({
               "TransactionType": "Invoke",
               "Account": wallet.address,
-              "NetworkID": NetworkID, "Sequence": 0,
+              "NetworkID": NetworkID, 
+              "Sequence": 0,
               "TicketSequence": tickets[i],
               "Parameters": [
-                  {
-                      "URI": xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${y}`),
-                     
+                {
+                  HookParameter: {
+                    HookParameterName: "4E554D",
+                    HookParameterValue: y,
+                  },
+                  HookParameter: {
+                    HookParameterName: "555249",
+                    HookParameterValue: URI,
                   }
+                }
               ]
           });
   
