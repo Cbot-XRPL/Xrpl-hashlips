@@ -25,7 +25,7 @@ async function main() {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  
+
 
   //set network
   let network = "wss://xahau-test.net";
@@ -51,9 +51,6 @@ async function main() {
   // log your hook address
   console.log(`Your public address is: ${my_wallet.address}`);
 
-  //define file prefix
-  const carpeta = "/json_files";
-
 
   //check your account info
   const response = await client.request({
@@ -69,7 +66,6 @@ async function main() {
   console.log(`Your reserves is: ${reserves} XAH`);
   const balance = total_balance - reserves;
   console.log(`Your available balance is: ${balance} XAH`);
-
 
   //NEED TO ADD FIX FOR JSON NUMBERS-------------------------------------------------------------------------------------------------------
   const TicketTotalCost = numberURIs * 0.3;
