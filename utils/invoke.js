@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const xrpl = require("xrpl");
+const xrpl = require("@transia/xrpl");
 const { derive, utils, signAndSubmit } = require("xrpl-accountlib");
 const crypto = require("crypto");
 require("dotenv").config();
@@ -37,10 +37,11 @@ async function main() {
 
   //connect to network
   const client = new xrpl.Client(network);
-  await client.connect();
+  await client.connect().then(
+    console.log('connected to Xahau')
+  );
 
-  //check speical utils for network info
-  const networkInfo = await utils.txNetworkAndAccountValues(network, account);
+
 
   //configure hook account for searching
   const account = derive.familySeed(process.env.HOOK_SEED, { algorithm: "secp256k1" });
@@ -50,6 +51,10 @@ async function main() {
 
   // log your hook address
   console.log(`Your public address is: ${my_wallet.address}`);
+
+
+    //check speical utils for network info
+    const networkInfo = await utils.txNetworkAndAccountValues(network, account);
 
 
   //check your account info
@@ -160,7 +165,7 @@ async function main() {
 
 
         //define normal file path
-        const filePath = `${basePath}/build/json/00000.json`;
+        let filePath = `${basePath}/build/json/00000.json`;
 
         //set proper for 1-10
         if (i < 10) {
@@ -208,7 +213,7 @@ async function main() {
 
 
 //define normal file path
-const uriPath = `00000.json`;
+let uriPath = `00000.json`;
 
 
 //set proper for 1-10
@@ -242,32 +247,38 @@ if (i >= 10000 && i < 99999) {
  console.log(URI)
 
  
-        
-          // Prepare the Invoke transaction
-          const prepared = await client.autofill({
-              "TransactionType": "Invoke",
-              "Account": wallet.address,
-              "NetworkID": NetworkID, 
-              "Sequence": 0,
-              "TicketSequence": tickets[i],
-              "Parameters": [
-                {
-                  HookParameter: {
-                    HookParameterName: "4E554D",
-                    HookParameterValue: y,
-                  },
-                  HookParameter: {
-                    HookParameterName: "555249",
-                    HookParameterValue: URI,
-                  }
-                }
-              ]
-          });
-  
-          const signed = wallet.sign(prepared);
-          const tx = await client.submitAndWait(signed.tx_blob);
-          console.log('TX submitted:', y, tx);
-          console.log(JSON.stringify(tx));
+ const yHex = y.toString(16).padStart(16, '0').toUpperCase(); // Ensures UINT64 format
+
+ const prepared = await client.autofill({
+   TransactionType: "Invoke",
+   Account: my_wallet.address,
+   NetworkID: NetworkID,
+   Sequence: 0,
+   TicketSequence: tickets[i],
+   HookParameters: [  // ✅ Ensure it's an array of objects
+     {
+       HookParameter: {
+         HookParameterName: "4E554D",  // "NUM" in Hex
+         HookParameterValue: yHex  
+       }
+     },
+     {
+       HookParameter: {
+         HookParameterName: "555249",  // "URI" in Hex
+         HookParameterValue: URI
+       }
+     }
+   ],
+   Flags: 0
+ });
+ 
+ console.log("Prepared TX:", prepared);
+ 
+ const signed = my_wallet.sign(prepared);
+ const tx = await client.submitAndWait(signed.tx_blob);
+ console.log('TX submitted:', y, tx);
+ console.log(JSON.stringify(tx));
+ 
       }
   
       console.log('Invoke finished. Enjoy!');

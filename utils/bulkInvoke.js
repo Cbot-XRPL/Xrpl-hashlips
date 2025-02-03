@@ -23,8 +23,10 @@ const wallet = xrpl.Wallet.fromSeed(process.env.HOOK_SEED)
   async function mintToken(jsonUri,file) {
 	
 const client = new xrpl.Client("wss://xahau.network/")
-await client.connect()
-console.log("Connected to Xahau")
+await client.connect().then(
+
+)
+
 
 	const transactionBlob = {
 		TransactionType: "NFTokenMint",
