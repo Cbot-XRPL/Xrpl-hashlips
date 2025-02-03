@@ -208,30 +208,73 @@ async function main() {
 
         //Iterate through json files and invoke them-------------------------------------------------------------------------------------------------------
         for (let i = 0; i < numberURIs; i++) {
+          let y = i + 1;
 
-          y = i + 1;
-          //prepare the invoke
-          const prepared = ({
-            "TransactionType": "URITokenMint",
-            "Account": my_wallet.address,
-            "URI": xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${y}.json`),
-            "Sequence": 0,
-            "TicketSequence": tickets[i],
-            "Fee": "100",
-            "NetworkID": NetworkID,
+
+//define normal file path
+const uriPath = `00000.json`;
+
+
+//set proper for 1-10
+if (i < 10) {
+  uriPath = `0000${y}.json`;
+}
+
+//set proper for 10-99
+if (i >= 10 && i < 100) {
+  uriPath = `000${y}.json`;
+}
+
+//set proper for 100-999
+if (i >= 100 && i < 1000) {
+  uriPath = `00${y}.json`;
+}
+
+//set proper for 1000-9999
+if (i >= 1000 && i < 10000) {
+  uriPath = `0${y}.json`;
+}
+
+//set proper for 10000-99999
+if (i >= 10000 && i < 99999) {
+  uriPath = `${y}.json`;
+}
+
+
+
+
+
+          
+          // Prepare the Invoke transaction
+          const prepared = await client.autofill({
+              "TransactionType": "Invoke",
+              "Account": wallet.address,
+              "NetworkID": NetworkID, "Sequence": 0,
+              "TicketSequence": tickets[i],
+              "Parameters": [
+                  {
+                      "URI": xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${y}`),
+                     
+                  }
+              ]
           });
-          const tx = await signAndSubmit(prepared, network, account);
-          console.log('TX submitted: ', y, tx);
+  
+          const signed = wallet.sign(prepared);
+          const tx = await client.submitAndWait(signed.tx_blob);
+          console.log('TX submitted:', y, tx);
           console.log(JSON.stringify(tx));
-        }
-        console.log('invoke finished. Enjoy!');
-        console.log('Feel free to donate to: rCboTXmnomVJzRKVXqDMDFzwTaCKFAcYs or follow me @cbot_xrpl');
       }
-    }
-
-    await client.disconnect();
-    console.log(`Connection closed`);
+  
+      console.log('Invoke finished. Enjoy!');
+      console.log('Feel free to donate to: rCboTXmnomVJzRKVXqDMDFzwTaCKFAcYs or follow me @cbot_xrpl');
+  
+      await client.disconnect();
+      console.log("Connection closed");
   }
 
+}
+
+
+}
 }
 main();
