@@ -6,17 +6,14 @@ const crypto = require("crypto");
 require("dotenv").config();
 const basePath = process.cwd();
 
-//Modify these fields before running your code
 
 //Number of URITokens (NFTs) you want to Invoke
 const numberURIs = 5;
 //Select your network "Testnet" or "Mainnet"
 const net = "Testnet";
-//Price of every NFT in XAH. Example: for 1 XAH price per NFT, put 1
-const xah = 10;
 //CID from tour ipfs files without 'ipfs://' part. Fake example: 'bafybeigyy2u2sbgtxxr2tdc6snxgefdo52bx2qy2nd3vjrjzaieg4yr3ce'
-const ipfs_cid = '';
-//Burnable flag, 0 -> you can't burn other owners URITokens, 1 -> you can burn other owners URITokens
+const ipfs_cid = 'bafybeieoyz3sghr27ybimhssgahaba5of6anmldjjtmufsxen22gmenjl4';
+
 
 
 
@@ -27,8 +24,8 @@ async function main() {
   function esperar(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
-  //set listing pirce
-  const price = xah * 1000000;
+
+  
 
   //set network
   let network = "wss://xahau-test.net";
