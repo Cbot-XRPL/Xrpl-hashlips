@@ -5,13 +5,13 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 const network = NETWORK.xrpl;
 
 // General metadata
-const namePrefix = "token-name";
-const description = "Remember to replace this description";
-const baseUri = "ipfs://your-images-ipfs-hash/images";
+const namePrefix = "Vault_Test_Ticket";
+const description = "Xahau Vault Test Tickets";
+const baseUri = "ipfs://bafybeibgzrt2ximqhi2vc2yqe3lr6zswvbkt4w4u4ztlc7fvzohqvx3knq";
 
 
 
-// If you have selected Solana then the collection starts from 0 automatically
+//put your layer folder and edition size
 const layerConfigurations = [
   {
     growEditionSizeTo: 5,
@@ -19,17 +19,13 @@ const layerConfigurations = [
       { name: "Background" },
       { name: "Eyeball" },
       { name: "Eye color" },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid" },
-      { name: "Top lid" },
     ],
   },
 ];
 
 //nft.storage and ipfs settings
 const folderUpload = "images"
-const token = 'your nft.storage api token'
+
 
 
 
