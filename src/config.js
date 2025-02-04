@@ -16,9 +16,7 @@ const layerConfigurations = [
   {
     growEditionSizeTo: 5,
     layersOrder: [
-      { name: "Background" },
-      { name: "Eyeball" },
-      { name: "Eye color" },
+      { name: "Background" }
     ],
   },
 ];
@@ -100,7 +98,6 @@ module.exports = {
   description,
   background,
   folderUpload,
-  token,
   uniqueDnaTorrance,
   layerConfigurations,
   rarityDelimiter,
