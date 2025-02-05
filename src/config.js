@@ -14,11 +14,13 @@ const baseUri = "ipfs://bafybeibgzrt2ximqhi2vc2yqe3lr6zswvbkt4w4u4ztlc7fvzohqvx3
 //put your layer folder and edition size
 const layerConfigurations = [
   {
-    growEditionSizeTo: 50,
+    growEditionSizeTo: 200,
     layersOrder: [
       { name: "Background"},
       { name: "Card"},
       { name: "Logo"},
+      { name: "Tag"},
+      { name: "Symbol"},
 
     ],
   },
