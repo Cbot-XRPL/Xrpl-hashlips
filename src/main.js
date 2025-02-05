@@ -237,7 +237,7 @@ const filterDNAOptions = (_dna) => {
       const keyPairs = setting.split("=");
       return { ...r, [keyPairs[0]]: keyPairs[1] };
     }, []);
-
+    console.log(`bypass dna`)
     return options.bypassDNA;
   });
 
