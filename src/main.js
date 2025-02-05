@@ -131,7 +131,6 @@ const drawBackground = () => {
 const addMetadata = (_dna, _edition) => {
   
   let tempMetadata = {
-    schema: "https://nftmaster.com/nftmaster.v0Schema",
     name: `${namePrefix} #${_edition}`,
     description: description,
     image: `${baseUri}/${_edition}.png`,
@@ -141,8 +140,8 @@ const addMetadata = (_dna, _edition) => {
     file: null,
     external_link: "https://cbotlabs.xyz",
     collection: {
-      name: "xWizard",
-      family: null
+      name: "Test_Tickets",
+      family: "XV"
     },
    edition: _edition,
    attributes: attributesList

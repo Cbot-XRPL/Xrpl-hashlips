@@ -133,7 +133,7 @@ const saveMetadata = (_loadedImageObject) => {
     /\.[^/.]+$/,
     ""
   );
-
+ ///fix metadat build here using editon to track file number and add 00s
   let tempAttributes = [];
   tempAttributes.push(addRarity());
 
@@ -143,7 +143,7 @@ const saveMetadata = (_loadedImageObject) => {
     image: `${baseUri}/${shortName}.png`,
     edition: Number(shortName),
     attributes: tempAttributes,
-    compiler: "HashLips Art Engine",
+    compiler: "Xahau HashLips Art Engine",
   };
   fs.writeFileSync(
     `${buildDir}/${shortName}.json`,
