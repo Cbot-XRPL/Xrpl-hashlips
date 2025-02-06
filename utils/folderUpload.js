@@ -1,9 +1,11 @@
 require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
+const basePath = process.cwd();
 const { PinataSDK } = require("pinata-web3");
 const { getFilesFromPath } = require("files-from-path");
 const { File } = require("buffer");  // Import File from buffer module
+const { folderUpload } = require(`${basePath}/src/config.js`);
 
 
 console.log(process.env.PINATA_JWT) //WHY DOES THIS SHOW UNDEFINED I HAVE A .env file
@@ -16,7 +18,7 @@ const pinata = new PinataSDK({
 async function upload() {
   try {
     // Ensure correct directory path
-    const dirPath = path.join(__dirname, "../build/json");
+    const dirPath = path.join(__dirname, `../build/${folderUpload}`);
 
     // Get files from path
     const files = await getFilesFromPath(dirPath);
