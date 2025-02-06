@@ -11,7 +11,7 @@ const description = "Xahau Vault Test Tickets";
 const baseUri = process.env.IMAGE_BASE_URI;
 
 //Pinita and ipfs settings
-const folderUpload = "images"
+const folderUpload = "json"
 
 //put your layer folder and edition size
 const layerConfigurations = [

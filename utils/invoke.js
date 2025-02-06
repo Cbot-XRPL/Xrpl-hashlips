@@ -1,9 +1,10 @@
+require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const xrpl = require("@transia/xrpl");
 const { derive, utils, signAndSubmit } = require("xrpl-accountlib");
 const crypto = require("crypto");
-require("dotenv").config();
+
 const basePath = process.cwd();
 
 
@@ -44,7 +45,8 @@ async function main() {
 
 
   //configure hook account for searching
-  const account = derive.familySeed(process.env.HOOK_SEED, { algorithm: "secp256k1" });
+  const account = derive.familySeed(process.env.HOOK_SEED);
+  console.log(account);
 
   //confifure hook wallet for invokes
   const my_wallet = xrpl.Wallet.fromSeed(process.env.HOOK_SEED);
@@ -86,6 +88,7 @@ async function main() {
   } else {
 
     //We check how many tickets you had before running the code
+    console.log(my_wallet.address);
     let response = await client.request({
       command: "account_objects",
       account: my_wallet.address,
@@ -106,6 +109,7 @@ async function main() {
       command: "account_info",
       account: my_wallet.address,
     });
+    console.log(my_wallet.address);
     numberTickets = numberURIs - numberTickets;
     console.log(`${numberTickets} tickets will be created`);
     if (numberTickets > 0) {
@@ -119,9 +123,9 @@ async function main() {
         Sequence: current_sequence,
         ...networkInfo.txValues,
       };
-
+      console.log(my_wallet.address);
       // Submit TicketCreate -------------------------------------------------------
-      const tx = signAndSubmit(prepared, network, account);
+      const tx = await signAndSubmit(prepared, network, account);
       console.log("Info tx ", tx);
       const jsonDataString = JSON.stringify(tx);
       console.log(jsonDataString);
@@ -132,11 +136,15 @@ async function main() {
         `New tickets are not created. You have enough created already.`
       );
     };
+
+//cant find account?
     const response2 = await client.request({
       command: "account_objects",
       account: my_wallet.address,
       type: "ticket",
     });
+
+
     console.log(
       "Checking the tickets created are enough for your bulk minting, wait 10 seconds..."
     );
@@ -243,7 +251,7 @@ if (i >= 10000 && i < 99999) {
 
 
           
- let URI = xrpl.convertStringToHex(`ipfs://${ipfs_cid}/${uriPath}`);
+ let URI = xrpl.convertStringToHex(`${ipfs_cid}/${uriPath}`);
  console.log(URI)
 
  
