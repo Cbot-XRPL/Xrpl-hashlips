@@ -16,7 +16,7 @@ const folderUpload = "json"
 //put your layer folder and edition size
 const layerConfigurations = [
   {
-    growEditionSizeTo: 5,
+    growEditionSizeTo: 100,
     layersOrder: [
       { name: "Background"},
       { name: "Card"},

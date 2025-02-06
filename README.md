@@ -16,13 +16,13 @@ Type `npm install` and bring in all your dependencies. This runs off an older ve
 PINATA_JWT=QRFH#YOURTOKEN#$BRKJF
 GATEWAY_URL=your-gate-way-264.mypinata.cloud
 HOOK_SEED=VARRYOURSEEDOBVH
-IMAGE_BASE_URI=YOURIPFSBASEUIRIMAGEFOLDERAFTERYOURPINIT
-JSON_BASE_URI=YOURIPFSBASEUIRJSONFOLDERAFTERYOURPINIT
+IMAGE_BASE_URI=ipfs://YOURIPFSBASEUIRIMAGEFOLDERAFTERYOURPINIT
+JSON_BASE_URI=ipfs://YOURIPFSBASEUIRJSONFOLDERAFTERYOURPINIT
 
 
 ## Build and Upload Files
 
-Use the command in the terminal `npm run build` to build your image and JSON metadata files. You can then set the file you want to upload in the `config.js` file, either images or JSON. FIRST, set your folder upload to images in the `config.js`, then in the console run the command `npm run folder_upload`. After the image folder is uploaded, collect the base path to your image folder and save it in the `.env` file as `IMAGE_BASE_URI`. Once you have saved the `IMAGE_BASE_URI`, in the console enter `npm run update_info` to fix your image path in all your metadata JSON files. Finally, once the metadata files are correct, you can set the folder upload in `config.js` to JSON and run `npm run folder_upload`. If you've done everything right, you should have all your images and metadata properly saved on IPFS. For use in a later step, add your `JSON_BASE_URI` to your `.env` file.
+Use the command in the terminal `npm run build` to build your image and JSON metadata files. You can then set the file you want to upload in the `config.js` file, either images or JSON. FIRST, set your folder upload to images in the `config.js`, then in the console run the command `npm run folder_upload`(modify folderupload file to make sure right upload type). After the image folder is uploaded, collect the base path to your image folder and save it in the `.env` file as `IMAGE_BASE_URI`. Once you have saved the `IMAGE_BASE_URI`, in the console enter `npm run update_info` to fix your image path in all your metadata JSON files. Finally, once the metadata files are correct, you can set the folder upload in `config.js` to JSON and run `npm run folder_upload`(delete bulk json prior). If you've done everything right, you should have all your images and metadata properly saved on IPFS. For use in a later step, add your `JSON_BASE_URI` to your `.env` file.
 
 
 

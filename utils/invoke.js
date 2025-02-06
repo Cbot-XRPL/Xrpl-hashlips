@@ -9,7 +9,7 @@ const basePath = process.cwd();
 
 
 //Number of URITokens (NFTs) you want to Invoke
-const numberURIs = 5;
+const numberURIs = 100;
 //Select your network "Testnet" or "Mainnet"
 const net = "Testnet";
 //CID from tour ipfs files without 'ipfs://' part. Fake example: 'bafybeigyy2u2sbgtxxr2tdc6snxgefdo52bx2qy2nd3vjrjzaieg4yr3ce'
@@ -170,34 +170,34 @@ async function main() {
       //NEED TO ADD FIX FOR JSON NUMBERS-------------------------------------------------------------------------------------------------------
       let count_files = 0;
       for (let i = 0; i < numberURIs; i++) {
-
+        let y = i + 1;
 
         //define normal file path
         let filePath = `${basePath}/build/json/00000.json`;
 
         //set proper for 1-10
-        if (i < 10) {
-          filePath = `${basePath}/build/json/0000${i + 1}.json`;
+        if (y < 10) {
+          filePath = `${basePath}/build/json/0000${y}.json`;
         }
 
         //set proper for 10-99
-        if (i >= 10 && i < 100) {
-          filePath = `${basePath}/build/json/000${i + 1}.json`;
+        if (y >= 10 && y < 100) {
+          filePath = `${basePath}/build/json/000${y}.json`;
         }
 
         //set proper for 100-999
-        if (i >= 100 && i < 1000) {
-          filePath = `${basePath}/build/json/00${i + 1}.json`;
+        if (y >= 100 && y < 1000) {
+          filePath = `${basePath}/build/json/00${y}.json`;
         }
 
         //set proper for 100-999
-        if (i >= 1000 && i < 10000) {
-          filePath = `${basePath}/build/json/0${i + 1}.json`;
+        if (y >= 1000 && y < 10000) {
+          filePath = `${basePath}/build/json/0${y}.json`;
         }
 
         //set proper for 100-999
-        if (i >= 10000 && i < 99999) {
-          filePath = `./json_files/${i + 1}.json`;
+        if (y >= 10000 && y < 99999) {
+          filePath = `./json_files/${y + 1}.json`;
         }
 
         //ensure all files are in place
@@ -207,7 +207,7 @@ async function main() {
         } else {
           console.log(`File ${filePath} DOESN'T exists.`);
         }
-      }
+      } 
 
 
       if (count_files != numberURIs) {
@@ -225,27 +225,27 @@ let uriPath = `00000.json`;
 
 
 //set proper for 1-10
-if (i < 10) {
+if (y < 10) {
   uriPath = `0000${y}.json`;
 }
 
 //set proper for 10-99
-if (i >= 10 && i < 100) {
+if (y >= 10 && y < 100) {
   uriPath = `000${y}.json`;
 }
 
 //set proper for 100-999
-if (i >= 100 && i < 1000) {
+if (y >= 100 && y < 1000) {
   uriPath = `00${y}.json`;
 }
 
 //set proper for 1000-9999
-if (i >= 1000 && i < 10000) {
+if (y >= 1000 && y < 10000) {
   uriPath = `0${y}.json`;
 }
 
 //set proper for 10000-99999
-if (i >= 10000 && i < 99999) {
+if (y >= 10000 && y < 99999) {
   uriPath = `${y}.json`;
 }
 

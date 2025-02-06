@@ -8,7 +8,7 @@ const { File } = require("buffer");  // Import File from buffer module
 const { folderUpload } = require(`${basePath}/src/config.js`);
 
 
-console.log(process.env.PINATA_JWT) //WHY DOES THIS SHOW UNDEFINED I HAVE A .env file
+console.log(process.env.JWT) //WHY DOES THIS SHOW UNDEFINED I HAVE A .env file
 // Initialize Pinata
 const pinata = new PinataSDK({
   pinataJwt: process.env.JWT,
@@ -28,7 +28,7 @@ async function upload() {
       files.map(async (file) => {
         const filePath = path.join(dirPath, path.basename(file.name)); // Ensure correct path
         const buffer = await fs.promises.readFile(filePath);
-        const fileObj = new File([buffer], path.basename(file.name), { type: "application/json" }); // Convert buffer to File
+        const fileObj = new File([buffer], path.basename(file.name), { type: "json" }); // Convert buffer to File
         return fileObj;
       })
     );
