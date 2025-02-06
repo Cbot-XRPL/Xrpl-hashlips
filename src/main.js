@@ -285,6 +285,9 @@ const createDna = (_layers) => {
   return randNum.join(DNA_DELIMITER);
 };
 
+
+
+/// fix meta data here
 const writeMetaData = (_data) => {
   fs.writeFileSync(`${buildDir}/json/_metadata.json`, _data);
 };
@@ -296,8 +299,33 @@ const saveMetaDataSingleFile = (_editionCount) => {
         `Writing metadata for ${_editionCount}: ${JSON.stringify(metadata)}`
       )
     : null;
+
+
+
+//Char fixer for Xahau
+let charFix = '';
+//file number
+let num = Number(_editionCount);
+
+switch (true) {
+  case num < 10:
+    charFix = '0000';
+    break;
+  case num < 100:
+    charFix = '000';
+    break;
+  case num < 1000:
+    charFix = '00';
+    break;
+    case num < 10000:
+      charFix = '0';
+      break;
+  default:
+    charFix = '';
+}
+
   fs.writeFileSync(
-    `${buildDir}/json/${_editionCount}.json`,
+    `${buildDir}/json/${charFix}${_editionCount}.json`,
     JSON.stringify(metadata, null, 2)
   );
 };
