@@ -1,6 +1,7 @@
 const basePath = process.cwd();
 const { MODE } = require(`${basePath}/constants/blend_mode.js`);
 const { NETWORK } = require(`${basePath}/constants/network.js`);
+require("dotenv").config();
 
 const network = NETWORK.xrpl;
 
@@ -9,7 +10,8 @@ const namePrefix = "Vault_Test_Ticket";
 const description = "Xahau Vault Test Tickets";
 const baseUri = process.env.IMAGE_BASE_URI;
 
-
+//Pinita and ipfs settings
+const folderUpload = "images"
 
 //put your layer folder and edition size
 const layerConfigurations = [
@@ -25,11 +27,6 @@ const layerConfigurations = [
     ],
   },
 ];
-
-//nft.storage and ipfs settings
-const folderUpload = "images"
-
-
 
 
 

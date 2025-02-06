@@ -1,13 +1,15 @@
+require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { PinataSDK } = require("pinata-web3");
 const { getFilesFromPath } = require("files-from-path");
 const { File } = require("buffer");  // Import File from buffer module
-require("dotenv").config();
 
+
+console.log(process.env.PINATA_JWT) //WHY DOES THIS SHOW UNDEFINED I HAVE A .env file
 // Initialize Pinata
 const pinata = new PinataSDK({
-  pinataJwt: process.env.PINATA_JWT,
+  pinataJwt: process.env.JWT,
   pinataGateway: process.env.GATEWAY_URL
 });
 

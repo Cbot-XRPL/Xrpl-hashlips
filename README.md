@@ -4,12 +4,13 @@ This is a variant of the Hashlips Art Engine thats been supercharged to pin file
 
 ## Tools
 
-- https://docs.pinata.cloud/web3/pinning/pinning-files#json
-
-
+- [PINITA](https://docs.pinata.cloud/web3/pinning/pinning-files#json)
+- [HASHLIPS](https://hashlips.online/HashLips)
+- [XAHAU URI TOKEN REMIT HOOK](https://github.com/Cbot-XRPL/URI-Token-Remit)
+  
 ## Set Up
 
-Type npm install and bring in all your dependencies. This runs off an older version of dependencies, so you may need to downgrade Node or Python. You will need to set your environmental variable in a standard .env file. You will need a JWT token from Pinata and a Gateway address from Pinata. You will also need the Seed (secret) for your account with the hook installed on it. You will also be putting the image and JSON file base URI in the .env in a later step. Go read the [HASHLIPS_README.MD](HASHLIPS_README.md) to learn how Hashlips works. Once you have learned about Hashlips, configure your image layers and metadata in config.js.
+Type `npm install` and bring in all your dependencies. This runs off an older version of dependencies, so you may need to downgrade Node or Python. You will need to set your environmental variable in a standard `.env` file. You will need a JWT token from Pinata and a Gateway address from Pinata. You will also need the Seed (secret) for your account with the hook installed on it. You will also be putting the image and JSON file base URI in the `.env` in a later step. Go read the [HASHLIPS_README.MD](HASHLIPS_README.md) to learn how Hashlips works. Once you have learned about Hashlips, configure your image layers and metadata in config.js.
 
 
 PINATA_JWT=QRFH#YOURTOKEN#$BRKJF

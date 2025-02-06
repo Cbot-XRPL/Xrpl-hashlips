@@ -24,8 +24,32 @@ data.forEach((item) => {
     item.description = description;
     item.image = `${baseUri}/${item.edition}.png`;
   }
+
+  //Char fixer for Xahau
+let charFix = '';
+//file number
+let num = Number(item.edition);
+
+switch (true) {
+  case num < 10:
+    charFix = '0000';
+    break;
+  case num < 100:
+    charFix = '000';
+    break;
+  case num < 1000:
+    charFix = '00';
+    break;
+    case num < 10000:
+      charFix = '0';
+      break;
+  default:
+    charFix = '';
+}
+
+
   fs.writeFileSync(
-    `${basePath}/build/json/${item.edition}.json`,
+    `${basePath}/build/json/${charFix}${item.edition}.json`,
     JSON.stringify(item, null, 2)
   );
 });
