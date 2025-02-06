@@ -4,17 +4,17 @@ const { NETWORK } = require(`${basePath}/constants/network.js`);
 
 const network = NETWORK.xrpl;
 
-// General metadata
+// General Metadata
 const namePrefix = "Vault_Test_Ticket";
 const description = "Xahau Vault Test Tickets";
-const baseUri = "ipfs://bafybeibgzrt2ximqhi2vc2yqe3lr6zswvbkt4w4u4ztlc7fvzohqvx3knq";
+const baseUri = process.env.IMAGE_BASE_URI;
 
 
 
 //put your layer folder and edition size
 const layerConfigurations = [
   {
-    growEditionSizeTo: 101,
+    growEditionSizeTo: 5,
     layersOrder: [
       { name: "Background"},
       { name: "Card"},

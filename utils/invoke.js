@@ -12,7 +12,7 @@ const numberURIs = 5;
 //Select your network "Testnet" or "Mainnet"
 const net = "Testnet";
 //CID from tour ipfs files without 'ipfs://' part. Fake example: 'bafybeigyy2u2sbgtxxr2tdc6snxgefdo52bx2qy2nd3vjrjzaieg4yr3ce'
-const ipfs_cid = 'bafybeieoyz3sghr27ybimhssgahaba5of6anmldjjtmufsxen22gmenjl4';
+const ipfs_cid = process.env.JSON_BASE_URI;
 
 
 

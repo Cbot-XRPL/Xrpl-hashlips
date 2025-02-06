@@ -20,7 +20,7 @@
     "update_info": "node utils/update_info.js",
     "preview_gif": "node utils/preview_gif.js",
     "generate_metadata": "node utils/generate_metadata.js",
-    "folder_upload": "node utils/folderUpload2.js",
+    "folder_upload": "node utils/folderUpload.js",
     "invoke": "node utils/invoke.js"
   },
   "OGauthor": "Daniel Eugene Botha (HashLips)",
