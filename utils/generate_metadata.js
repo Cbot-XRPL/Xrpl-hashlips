@@ -133,7 +133,7 @@ const saveMetadata = (_loadedImageObject) => {
     /\.[^/.]+$/,
     ""
   );
- ///fix metadat build here using editon to track file number and add 00s
+ ///fix metadat build here using editon to track file number and add 00s ----------------------------------------
   let tempAttributes = [];
   tempAttributes.push(addRarity());
 
@@ -145,8 +145,34 @@ const saveMetadata = (_loadedImageObject) => {
     attributes: tempAttributes,
     compiler: "Xahau HashLips Art Engine",
   };
+
+//Char fixer for Xahau
+let charFix = '';
+
+//file number
+let num = Number(shortName);
+
+switch (true) {
+  case num < 10:
+    charFix = '0000';
+    break;
+  case num < 100:
+    charFix = '000';
+    break;
+  case num < 1000:
+    charFix = '00';
+    break;
+    case num < 10000:
+      charFix = '0';
+      break;
+  default:
+    charFix = '';
+}
+
+
+  //write file
   fs.writeFileSync(
-    `${buildDir}/${shortName}.json`,
+    `${buildDir}/${charFix}${shortName}.json`,
     JSON.stringify(tempMetadata, null, 2)
   );
   metadataList.push(tempMetadata);
